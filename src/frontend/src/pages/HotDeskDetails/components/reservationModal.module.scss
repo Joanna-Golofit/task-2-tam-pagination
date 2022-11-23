@@ -1,0 +1,39 @@
+.btn {
+    width: 10rem;
+}
+
+// These ugly rules are here for making datepicker input wider
+// I tried many different options, but I can't find easier way
+.pickerHolder {
+    & > div {
+        width: 100%;
+
+        & > div:first-child  > div{
+            width: 100%
+        }
+    }
+
+    $placeholderFontSize: 0.9em;
+
+    & input::-webkit-input-placeholder {
+        font-size: $placeholderFontSize;
+    }
+
+    & input::-moz-placeholder {
+        font-size: $placeholderFontSize;
+    }
+
+    & input:-ms-input-placeholder {
+        font-size: $placeholderFontSize;
+    }
+
+    & input:-moz-placeholder {
+        font-size: $placeholderFontSize;
+    }
+}
+
+.search {
+    & > div {
+        width: 100%;
+    }
+}

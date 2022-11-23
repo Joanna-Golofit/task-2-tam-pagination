@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Database", "TeamsAllocationManager.Database\TeamsAllocationManager.Database.csproj", "{C9147896-EA79-4010-9F8C-CEBEEE370B7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Contracts", "TeamsAllocationManager.Contracts\TeamsAllocationManager.Contracts.csproj", "{B70ED8D3-8257-44DD-88BA-C43C9F3C5A8E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Domain", "TeamsAllocationManager.Domain\TeamsAllocationManager.Domain.csproj", "{871552BD-1653-4E39-B1C7-58C49433E297}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Infrastructure", "TeamsAllocationManager.Infrastructure\TeamsAllocationManager.Infrastructure.csproj", "{953BE651-531A-49DD-8F22-CF4A79DB0C0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Dtos", "TeamsAllocationManager.Dtos\TeamsAllocationManager.Dtos.csproj", "{174348EA-F95B-47DC-9339-D4B22CE0E11C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Mapper", "TeamsAllocationManager.Mapper\TeamsAllocationManager.Mapper.csproj", "{A6FA5EB4-1F02-42B1-A468-BDF871FFA975}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Api", "TeamsAllocationManager.Api\TeamsAllocationManager.Api.csproj", "{05ECF967-0FC0-4A42-97DC-342A10F4470A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84457F23-3E12-44B8-BC1B-3F4924B4D2CA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integrations", "Integrations", "{F6847999-2667-4EF1-B056-BA9F5842F010}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Integrations.FutureDatabase", "Integrations\TeamsAllocationManager.Integrations.FutureDatabase\TeamsAllocationManager.Integrations.FutureDatabase.csproj", "{D5D7FF63-45A6-4BE0-867A-6CDF6063669C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.Integrations", "Integrations\TeamsAllocationManager.Integrations\TeamsAllocationManager.Integrations.csproj", "{311F8FAE-4291-4F4F-95AD-942B643DC19A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2FCD3012-BB11-46F3-94EE-2D827140AA7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamsAllocationManager.LocalDbSeeder", "Tools\TeamsAllocationManager.LocalDbSeeder\TeamsAllocationManager.LocalDbSeeder.csproj", "{9DDD9795-3D74-4C35-857F-EE3E1C512427}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9147896-EA79-4010-9F8C-CEBEEE370B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9147896-EA79-4010-9F8C-CEBEEE370B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9147896-EA79-4010-9F8C-CEBEEE370B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9147896-EA79-4010-9F8C-CEBEEE370B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B70ED8D3-8257-44DD-88BA-C43C9F3C5A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B70ED8D3-8257-44DD-88BA-C43C9F3C5A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B70ED8D3-8257-44DD-88BA-C43C9F3C5A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B70ED8D3-8257-44DD-88BA-C43C9F3C5A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{871552BD-1653-4E39-B1C7-58C49433E297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{871552BD-1653-4E39-B1C7-58C49433E297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{871552BD-1653-4E39-B1C7-58C49433E297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{871552BD-1653-4E39-B1C7-58C49433E297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{953BE651-531A-49DD-8F22-CF4A79DB0C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953BE651-531A-49DD-8F22-CF4A79DB0C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953BE651-531A-49DD-8F22-CF4A79DB0C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953BE651-531A-49DD-8F22-CF4A79DB0C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{174348EA-F95B-47DC-9339-D4B22CE0E11C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{174348EA-F95B-47DC-9339-D4B22CE0E11C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{174348EA-F95B-47DC-9339-D4B22CE0E11C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{174348EA-F95B-47DC-9339-D4B22CE0E11C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6FA5EB4-1F02-42B1-A468-BDF871FFA975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6FA5EB4-1F02-42B1-A468-BDF871FFA975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6FA5EB4-1F02-42B1-A468-BDF871FFA975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6FA5EB4-1F02-42B1-A468-BDF871FFA975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05ECF967-0FC0-4A42-97DC-342A10F4470A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05ECF967-0FC0-4A42-97DC-342A10F4470A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05ECF967-0FC0-4A42-97DC-342A10F4470A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05ECF967-0FC0-4A42-97DC-342A10F4470A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5D7FF63-45A6-4BE0-867A-6CDF6063669C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5D7FF63-45A6-4BE0-867A-6CDF6063669C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5D7FF63-45A6-4BE0-867A-6CDF6063669C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5D7FF63-45A6-4BE0-867A-6CDF6063669C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{311F8FAE-4291-4F4F-95AD-942B643DC19A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{311F8FAE-4291-4F4F-95AD-942B643DC19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{311F8FAE-4291-4F4F-95AD-942B643DC19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{311F8FAE-4291-4F4F-95AD-942B643DC19A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DDD9795-3D74-4C35-857F-EE3E1C512427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DDD9795-3D74-4C35-857F-EE3E1C512427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DDD9795-3D74-4C35-857F-EE3E1C512427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DDD9795-3D74-4C35-857F-EE3E1C512427}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5D7FF63-45A6-4BE0-867A-6CDF6063669C} = {F6847999-2667-4EF1-B056-BA9F5842F010}
+		{311F8FAE-4291-4F4F-95AD-942B643DC19A} = {F6847999-2667-4EF1-B056-BA9F5842F010}
+		{9DDD9795-3D74-4C35-857F-EE3E1C512427} = {2FCD3012-BB11-46F3-94EE-2D827140AA7D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB48B751-7EB1-4FD4-9BE4-7313F6ADE452}
+	EndGlobalSection
+EndGlobal

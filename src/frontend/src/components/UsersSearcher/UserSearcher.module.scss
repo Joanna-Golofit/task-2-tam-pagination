@@ -1,0 +1,36 @@
+.flex {
+    display: flex;
+    padding-top: 5px;
+}
+
+.alignRight {
+    margin-left: auto;
+    text-align: right;
+}
+
+.project {
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    color: white;
+    white-space: nowrap;
+    max-height: 18px
+}
+
+.search {
+    padding-right: 0.75rem;
+
+    input {
+        max-width: unset !important;
+        width: 0;
+        margin-left: auto !important;
+        padding-left: 0 !important;
+
+        &:focus {
+            max-width: unset !important;
+            width: 250px;
+            padding-left: 1em !important;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+export const GRID_COLUMN_MOBILE = 16;
+export const GRID_COLUMN_TABLET = 8;
+export const GRID_COLUMN_COMPUTER = 8;
+export const HELP_URL = 'https://futureprocessinguk.sharepoint.com/sites/TAM';
+export const BIG_MEDIA_WIDTH = 1350;
+export const MEDIUM_MEDIA_WIDTH = 1140;
+export const LAPTOP_MEDIA_WIDTH = 1024;
+export const TABLET_MEDIA_WIDTH = 768;
+export const MOBILE_MEDIA_WIDTH = 425;

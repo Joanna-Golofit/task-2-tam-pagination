@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="EmployeeEquipment\**" />
+	  <EmbeddedResource Remove="EmployeeEquipment\**" />
+	  <None Remove="EmployeeEquipment\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\TeamsAllocationManager.Domain\TeamsAllocationManager.Domain.csproj" />
+	  <ProjectReference Include="..\TeamsAllocationManager.Dtos\TeamsAllocationManager.Dtos.csproj" />
+	</ItemGroup>
+
+</Project>

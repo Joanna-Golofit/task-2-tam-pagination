@@ -1,0 +1,8 @@
+{
+	"version": "2.0",
+	"logging": {
+		"logLevel": {
+			"TeamsAllocationManager.Infrastructure.Handlers.Import.ImportProjectsAndEmployeesHandler": "Information"
+		}
+	}
+}

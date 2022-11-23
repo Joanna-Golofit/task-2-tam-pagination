@@ -1,0 +1,17 @@
+.stretch {
+    flex-grow: 1;
+}
+
+.fitContent {
+    width: auto !important;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between !important;
+}
+
+#elipsisIcon{
+    cursor: default;
+    color: rgb(54,54,54);
+}

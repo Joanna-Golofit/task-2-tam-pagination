@@ -1,0 +1,23 @@
+.date::first-letter {
+  text-transform:capitalize;
+}
+
+.reservationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.actionButtons {
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: 1rem;
+  column-gap: 1rem;
+}

@@ -1,0 +1,141 @@
+@import '../../../styles/_variables.scss';
+
+.active{
+  text-decoration: underline;
+}
+
+#active{
+  text-decoration: underline !important;
+  background-color: rgb(61, 62, 63) !important;
+}
+
+#help{
+  margin-left: 1rem;
+}
+
+#help:hover{
+  cursor: pointer;
+}
+
+#emailLogin{
+  color: white;
+}
+
+#dropdown{
+  justify-content: space-between;
+  @media (max-width: 1200px){
+    min-width: unset;
+  }
+}
+
+#dropdownRoutes{
+  background-color: rgb(27, 28, 29);
+  height: $navbarHeight;
+  margin-right: -9px !important;
+  width: 100%;
+}
+
+#dropdownRoutes:focus,
+#dropdown:focus{
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+#dropdownMenu{
+  background-color: rgb(27, 28, 29);
+}
+
+.caretDown{
+  margin-left: 1rem !important;
+}
+
+#inline,
+#inlineSpaceBetween,
+#centered{
+  display: flex;
+  align-items: center;
+  height: $navbarHeight;
+}
+
+#inlineSpaceBetween{
+  justify-content: space-between;
+}
+
+#centered{
+  justify-content: center;
+  height: $navbarHeight;
+}
+
+#navbar{
+  padding: 0 0.5rem;
+  background: black;
+  &.darkNavbar{
+    border-bottom: .2em solid #f2711c;
+    div{
+      background: black;
+      color: white !important;
+      a{
+        color: inherit !important;
+      }
+      input{
+        background: #323232 !important;
+        color: white !important;
+      }
+      i:not(#help){
+        color: rgba(255, 255, 255, 0.897) !important;
+      }
+    }
+  }
+}
+
+.icon {
+  height: 4rem;
+  cursor: pointer;
+}
+
+.iconMenu {
+  padding: 0 !important;
+  margin-left: .5rem;
+  margin-right: 1rem;
+
+  + div {
+    flex: 0 0 auto;
+    max-width: 500px;
+  }
+}
+
+#toggleBtn{
+  .toggleDark{
+    cursor: pointer;
+    font-size: 2em !important;
+  }
+}
+
+.toggle{
+  cursor: pointer;
+}
+
+.langSelectorMenu {
+  width: max-content !important;
+}
+
+.link {
+  padding: 0 !important;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+
+@media (max-width: 425px) {
+  #dropdown  {
+    width: auto !important;
+  }
+
+  #inline + div {
+    margin-left: auto;
+
+    input:focus {
+      width: 180px;
+    }
+  }
+}

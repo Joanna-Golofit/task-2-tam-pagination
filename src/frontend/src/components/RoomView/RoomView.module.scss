@@ -1,0 +1,109 @@
+.headerWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.noRecordsText {
+  font-style: italic;
+}
+
+.wrapper{
+  display: flex !important;
+  text-align: center;
+  width: 100% !important;
+}
+
+#desksRoomPlanCell{
+  background-color: white;
+  padding: 0 !important;
+}
+
+.desksRoomPlanCell h3{
+  margin-top: 1rem
+}
+
+.header{
+  text-align: center;
+}
+
+.assignDeskText {
+  margin-top: 1rem !important;
+}
+
+.desks{
+  width: 33% !important;
+  border-right: solid 1px lightgrey;
+  overflow-y: auto;
+  height: 45rem;
+}
+
+.buttonWrapper {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  height: 3rem
+}
+
+.insideWrapper{
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.toggle:hover{
+  cursor: pointer
+}
+
+.button{
+  background-color: white !important;
+  float: right
+}
+
+.roomPlan{
+  display: block;
+  justify-content: center;
+  width: 66%;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 1199px), (min-width: 1025px) {
+  .desks{
+    width: 44% !important
+  }
+}
+
+@media (max-width: 1024px){
+  .desks{
+    width: 100% !important;
+  }
+
+  #table tbody
+  {
+    display: table-row-group !important;
+  }
+
+  #table tr
+  {
+    display: table-row !important;    
+    height: 52px !important;
+  }
+
+  #table td
+  {
+    display: table-cell !important;
+    width: fit-content !important;
+    font-weight: 100;
+  }
+
+  #table th
+  {
+    display: table-cell !important;
+    width: 1rem !important;
+  }
+}

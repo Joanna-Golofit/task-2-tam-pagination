@@ -1,0 +1,98 @@
+@import '../../../styles/_variables.scss';
+
+.roomLink{
+  color: #2185d0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.accordion.ui.roomRow{
+    cursor: default;
+}
+
+.expand{
+  cursor: pointer;
+}
+
+.desks{
+  width: 40% !important;
+  border-right: solid 1px lightgrey;
+  overflow-y: auto;
+  height: 40rem
+}
+
+.desksRoomPlanCell{
+  background-color: white;
+  padding: 0 !important;
+}
+.desksRoomPlanCell h3{
+  margin-top: 1rem
+}
+
+.wrapper{
+  display: flex;
+  text-align: center;
+}
+
+.roomPlanWrapper{
+  width: 60%;
+  height: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.roomPlan{
+  max-height: 100%; 
+  max-width: 100% !important;
+}
+
+#header{
+  text-align: center;
+}
+
+.button{
+  float: right;
+  background-color: white !important;
+  margin-right: 0 !important;
+}
+
+#addRoomModal{
+  height: 200px
+}
+
+@media (max-width: 1024px) {
+  .desks{
+    width: 100% !important;
+  }
+
+  #table tbody
+  {
+    display: table-row-group !important;
+  }
+
+  #table tr
+  {
+    display: table-row !important;    
+    height: 52px !important;
+  }
+
+  #table td
+  {
+    display: table-cell !important;
+    width: fit-content !important;
+  }
+
+  #table th
+  {
+    display: table-cell !important;
+    width: 1rem !important;
+  }
+}
+
+
+
+
+
+

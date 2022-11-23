@@ -1,0 +1,65 @@
+concurrent = 5 
+check_interval = 0 
+
+ [session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "vm-tam-ci"
+  url = "https://git.future-processing.com/"
+  token = "xdUvi7AGnQY1hcNSfgQx"
+  executor = "shell"
+  shell = "powershell"
+  [runners.custom_build_dir]
+    enabled = false
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+
+[[runners]]
+  name = "vm-tam-ci-2"
+  url = "https://git.future-processing.com"
+  token = "6hosSXA4wNMeZsyyNxFs"
+  executor = "shell"
+  shell = "powershell"
+  [runners.custom_build_dir]
+    enabled = false
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+
+[[runners]]
+  name = "vm-tam-ci-3"
+  url = "https://git.future-processing.com"
+  token = "yK1E3jDFfzxqgK59iMvN"
+  executor = "shell"
+  shell = "powershell"
+  [runners.custom_build_dir]
+    enabled = false
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+
+[[runners]]
+  name = "vm-tam-ci-4"
+  url = "https://git.future-processing.com"
+  token = "wxKp_gPxhxBxGsxHBJ-m"
+  executor = "shell"
+    shell = "powershell"
+  [runners.custom_build_dir]
+    enabled = false
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+
+[[runners]]
+  name = "vm-tam-ci-5"
+  url = "https://git.future-processing.com"
+  token = "_831MMzdpyxx7p9WFnsC"
+  executor = "shell"
+  shell = "powershell"
+  [runners.custom_build_dir]
+    enabled = false
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]

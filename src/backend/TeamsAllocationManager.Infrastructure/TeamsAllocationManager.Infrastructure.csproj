@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="10.1.1" />
+	  <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="1.9.1" />
+	  <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Integrations\TeamsAllocationManager.Integrations.FutureDatabase\TeamsAllocationManager.Integrations.FutureDatabase.csproj" />
+	  <ProjectReference Include="..\TeamsAllocationManager.Contracts\TeamsAllocationManager.Contracts.csproj" />
+	  <ProjectReference Include="..\TeamsAllocationManager.Database\TeamsAllocationManager.Database.csproj" />
+	  <ProjectReference Include="..\TeamsAllocationManager.Domain\TeamsAllocationManager.Domain.csproj" />
+	  <ProjectReference Include="..\TeamsAllocationManager.Dtos\TeamsAllocationManager.Dtos.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Handlers\EmployeeEquipment\" />
+	</ItemGroup>
+
+</Project>

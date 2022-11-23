@@ -1,0 +1,205 @@
+stages:
+  - build
+  - tests
+  - report
+  - deploy
+  
+build stage:
+  variables:
+    BACKEND_VERSION: "$CI_PIPELINE_IID.01"
+    REACT_APP_VERSION: "$CI_PIPELINE_ID.$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    REACT_APP_TAM_ENV_NAME: "stage"
+    REACT_APP_TAM_BACKEND_URL: "$REACT_APP_TAM_BACKEND_URL_STAGE"
+    REACT_APP_TAM_CLIENT_ID: "$AZURE_AD_APP_CLIENT_ID_STAGE"
+    REACT_APP_TAM_AZURE_STORAGE_NAME: "$AZURE_STORAGE_NAME_STAGE"
+    REACT_APP_TAM_AUTHORITY: "$REACT_APP_TAM_AUTHORITY_STAGE"
+  stage: build
+  environment: stage
+  script:
+    - npm -v
+    - powershell -executionpolicy Bypass -File scripts\buildBackend.ps1 -configuration Debug -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+    - powershell -executionpolicy Bypass -File scripts\buildFrontend.ps1 -configuration Debug -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+    - powershell -executionpolicy Bypass -File scripts\archiveBuilds.ps1 -configuration Debug -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+  artifacts:
+    paths:
+      - artifacts\backend
+      - artifacts\frontend
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "master"
+    
+build qa:
+  variables:
+    BACKEND_VERSION: "$CI_PIPELINE_IID.01"
+    REACT_APP_VERSION: "$CI_PIPELINE_ID.$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    REACT_APP_TAM_ENV_NAME: "qa"
+    REACT_APP_TAM_BACKEND_URL: "$REACT_APP_TAM_BACKEND_URL_QA"
+    REACT_APP_TAM_CLIENT_ID: "$AZURE_AD_APP_CLIENT_ID_QA"
+    REACT_APP_TAM_AZURE_STORAGE_NAME: "$AZURE_STORAGE_NAME_QA"
+    REACT_APP_TAM_AUTHORITY: "$REACT_APP_TAM_AUTHORITY_QA"
+  stage: build
+  environment: qa
+  script:
+    - npm -v
+    - powershell -executionpolicy Bypass -File scripts\buildBackend.ps1 -configuration Debug -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+    - powershell -executionpolicy Bypass -File scripts\buildFrontend.ps1 -configuration Debug -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+    - powershell -executionpolicy Bypass -File scripts\archiveBuilds.ps1 -configuration Debug -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+  artifacts:
+    paths:
+      - artifacts\backend
+      - artifacts\frontend
+  rules:
+    - if: $CI_COMMIT_BRANCH == "integration"
+
+build prod:
+  variables:
+    BACKEND_VERSION: "$RELEASE_VERSION.$CI_PIPELINE_IID"
+    REACT_APP_VERSION: "$RELEASE_VERSION.$CI_PIPELINE_IID"
+    REACT_APP_TAM_ENV_NAME: "prod"
+    REACT_APP_TAM_BACKEND_URL: "$REACT_APP_TAM_BACKEND_URL_PROD"
+    REACT_APP_TAM_CLIENT_ID: "$AZURE_AD_APP_CLIENT_ID_PROD"
+    REACT_APP_TAM_AZURE_STORAGE_NAME: "$AZURE_STORAGE_NAME_PROD"    
+    REACT_APP_TAM_AUTHORITY: "$REACT_APP_TAM_AUTHORITY_PROD"
+  stage: build
+  environment: prod
+  script:
+    - npm -v
+    - powershell -executionpolicy Bypass -File scripts\buildBackend.ps1 -configuration Release -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+    - powershell -executionpolicy Bypass -File scripts\buildFrontend.ps1 -configuration Release -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+    - powershell -executionpolicy Bypass -File scripts\archiveBuilds.ps1 -configuration Release -version "$BACKEND_VERSION" -commit "$CI_COMMIT_SHA" -envName "$env:CI_ENVIRONMENT_NAME"
+  artifacts:
+    paths:
+      - artifacts\backend
+      - artifacts\frontend
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      
+dotnet tests:
+  stage: tests
+  script:
+    - powershell -executionpolicy Bypass -File scripts\runBackendTests.ps1
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME $VERSION.$CI_PIPELINE_IID backend tests"
+    paths:
+      - artifacts\tests\backend
+    reports:
+      junit: artifacts\tests\backend\*.xml
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "master"
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "integration"
+
+#frontend tests:
+#  stage: tests
+#  script:
+#    - powershell -executionpolicy Bypass -File scripts\runFrontendTests.ps1
+#  artifacts:
+#    name: "$CI_COMMIT_REF_NAME $VERSION.$CI_PIPELINE_IID frontend tests"
+#    paths:
+#      - artifacts\tests\frontend
+#    reports:
+#      junit: artifacts\tests\frontend\frontend-*.xml
+#    expire_in: 1 week
+#  only:
+#      - development
+#      - master
+#      - merge_requests
+#      - tags
+#
+
+frontend analysis:
+  stage: tests
+  script:
+    - powershell -executionpolicy Bypass -File scripts\runFrontendCodeAnalysis.ps1
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "master"
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "integration"
+      
+deploy to stage:
+  variables:
+    BACKEND_VERSION: "$CI_PIPELINE_IID.01"
+    REACT_APP_VERSION: "$CI_PIPELINE_ID.$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    REACT_APP_TAM_ENV_NAME: "stage"
+    REACT_APP_TAM_BACKEND_URL: "$REACT_APP_TAM_BACKEND_URL_STAGE"
+    REACT_APP_TAM_CLIENT_ID: "$AZURE_AD_APP_CLIENT_ID_STAGE"
+    REACT_APP_TAM_AZURE_STORAGE_NAME: "$AZURE_STORAGE_NAME_STAGE"
+    REACT_APP_TAM_AUTHORITY: "$REACT_APP_TAM_AUTHORITY_STAGE"
+    GIT_STRATEGY: none
+  stage: deploy
+  environment:
+    name: stage
+    url: $FRONTEND_URL_STAGE
+  allow_failure: false
+  script:
+    - az login --service-principal --username $env:AZ_SP_USER_NAME --password $env:AZ_SP_PASS --tenant $env:AZ_SP_TENANT
+    - az account set --subscription $env:AZ_SP_SUBSCRIPTION_ID_STAGE
+    - powershell -executionpolicy Bypass -File scripts\deployBackend.ps1 -rgName "$env:RG_NAME_STAGE" -functionName "$env:AZURE_FUNC_NAME_STAGE" -dbConnectionString "$env:DB_CONN_STRING_STAGE"
+    - powershell -executionpolicy Bypass -File scripts\deployFrontend.ps1 -frontendName "$env:AZURE_STORAGE_NAME_STAGE"
+    - az logout
+  dependencies:
+    - dotnet tests
+    - frontend analysis
+#   - frontend tests
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "master"
+      when: manual
+      
+deploy to qa:
+  variables:
+    BACKEND_VERSION: "$CI_PIPELINE_IID.01"
+    REACT_APP_VERSION: "$CI_PIPELINE_ID.$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    REACT_APP_TAM_ENV_NAME: "qa"
+    REACT_APP_TAM_BACKEND_URL: "$REACT_APP_TAM_BACKEND_URL_QA"
+    REACT_APP_TAM_CLIENT_ID: "$AZURE_AD_APP_CLIENT_ID_QA"
+    REACT_APP_TAM_AZURE_STORAGE_NAME: "$AZURE_STORAGE_NAME_QA"
+    REACT_APP_TAM_AUTHORITY: "$REACT_APP_TAM_AUTHORITY_QA"
+    GIT_STRATEGY: none
+  stage: deploy
+  environment:
+    name: qa
+    url: $FRONTEND_URL_QA
+  allow_failure: false
+  script:
+    - az login --service-principal --username $env:AZ_SP_USER_NAME --password $env:AZ_SP_PASS --tenant $env:AZ_SP_TENANT
+    - az account set --subscription $env:AZ_SP_SUBSCRIPTION_ID_QA
+    - powershell -executionpolicy Bypass -File scripts\deployBackend.ps1 -rgName "$env:RG_NAME_QA" -functionName "$env:AZURE_FUNC_NAME_QA" -dbConnectionString "$env:DB_CONN_STRING_QA"
+    - powershell -executionpolicy Bypass -File scripts\deployFrontend.ps1 -frontendName "$env:AZURE_STORAGE_NAME_QA"
+    - az logout
+  dependencies:
+    - dotnet tests
+    - frontend analysis
+#   - frontend tests
+  rules:
+    - if: $CI_COMMIT_BRANCH == "integration"
+      when: manual      
+
+deploy master to prod:
+  variables:
+    BACKEND_VERSION: "$RELEASE_VERSION.$CI_PIPELINE_IID"
+    REACT_APP_VERSION: "$RELEASE_VERSION.$CI_PIPELINE_IID"
+    REACT_APP_TAM_ENV_NAME: "prod"
+    REACT_APP_TAM_BACKEND_URL: "$REACT_APP_TAM_BACKEND_URL_PROD"
+    REACT_APP_TAM_CLIENT_ID: "$AZURE_AD_APP_CLIENT_ID_PROD"
+    REACT_APP_TAM_AZURE_STORAGE_NAME: "$AZURE_STORAGE_NAME_PROD"
+    REACT_APP_TAM_AUTHORITY: "$REACT_APP_TAM_AUTHORITY_PROD"
+    GIT_STRATEGY: none
+  stage: deploy
+  environment:
+    name: prod
+    url: "$FRONTEND_URL_PROD"
+  allow_failure: false
+  script:
+    - az login --service-principal --username $env:AZ_SP_USER_NAME --password $env:AZ_SP_PASS --tenant $env:AZ_SP_TENANT
+    - az account set --subscription $env:AZ_SP_SUBSCRIPTION_ID_PROD
+    - powershell -executionpolicy Bypass -File scripts\deployBackend.ps1 -rgName "$env:RG_NAME_PROD" -functionName "$env:AZURE_FUNC_NAME_PROD" -dbConnectionString "$env:DB_CONN_STRING_PROD"
+    - powershell -executionpolicy Bypass -File scripts\deployFrontend.ps1 -frontendName "$env:AZURE_STORAGE_NAME_PROD"
+    - az cdn endpoint purge --resource-group $env:RG_NAME_PROD --name tamcdnprod --profile-name tamcdnprod --subscription $env:AZ_SP_SUBSCRIPTION_ID_PROD --content-paths "/*"
+    - az logout
+  dependencies:
+    - dotnet tests
+    - frontend analysis
+#   - frontend tests
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: manual

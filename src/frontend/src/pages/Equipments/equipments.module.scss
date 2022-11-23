@@ -1,0 +1,17 @@
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > .newCompanyBtn {
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+}
+.projectRow{
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,21 @@
+.headerCell{
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  column-gap: 0.5rem;
+}
+
+.deskNumber{
+  margin-left: 0.7em;
+}
+
+@media (max-width: 768px)
+{
+    .headerCell{
+      flex-direction: column;
+      align-items: flex-end;
+    }
+}
+
+

@@ -1,0 +1,15 @@
+.message {
+  display: flex;
+  justify-content: space-between;
+}
+
+#darkAppLayout, 
+#darkAppLayout h1,
+#darkAppLayout h2 {
+  background: black;
+  color: white !important;
+}
+
+#darkAppLayout svg > path {
+  fill: white;
+}

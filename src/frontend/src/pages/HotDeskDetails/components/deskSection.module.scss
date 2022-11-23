@@ -1,0 +1,83 @@
+.header{
+  text-align: center;
+}
+
+.button{
+  background-color: white !important;
+  float: right
+}
+
+.roomPlan {
+  display: block;
+  justify-content: center;
+  width: 66%;
+}
+
+#table tr > td:first-child {
+  text-align: center;
+}
+
+.wrapper{
+  display: flex !important;
+  text-align: center;
+  width: 100% !important;
+}
+
+.desksRoomPlanCell{
+  background-color: white;
+  padding: 0 !important;
+
+  & h3 {
+    margin-top: 1rem
+  }
+}
+
+.desks{
+  width: 33% !important;
+  border-right: solid 1px lightgrey;
+  overflow-y: scroll;
+  height: 45rem;
+  cursor: default;
+}
+
+.roomPlanHeader {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 1199px), (min-width: 1025px) {
+  .desks{
+    width: 40% !important
+  }
+}
+
+@media (max-width: 1024px){
+  .desks{
+    width: 100% !important;
+  }
+
+  #table tbody
+  {
+    display: table-row-group !important;
+    
+  }
+
+  #table tr
+  {
+    display: table-row !important;    
+    height: 52px !important;
+  }
+
+  #table td
+  {
+    display: table-cell !important;
+    width: fit-content !important;
+    font-weight: 100;
+  }
+
+  #table th
+  {
+    display: table-cell !important;
+    width: 1rem !important;
+  }
+}

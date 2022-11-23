@@ -1,0 +1,8 @@
+@import '../../../styles/_variables.scss';
+
+.projectRow{
+  cursor: pointer;
+  &:hover{
+      background-color: $focus;
+  }
+}

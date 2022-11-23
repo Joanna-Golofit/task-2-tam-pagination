@@ -1,0 +1,15 @@
+.historyModalTable {
+  max-height: 20rem;
+  overflow-y: auto;
+  display: block;
+}
+
+.historyModalHead{
+  position: sticky;
+  top: 0;
+}
+
+.buttonUp{
+  position: relative;
+  top: -1.7em;
+}

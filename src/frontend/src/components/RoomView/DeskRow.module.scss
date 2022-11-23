@@ -1,0 +1,47 @@
+.statistic{
+  text-align: center;
+}
+
+.employee{
+  text-align:  left;
+}
+
+.employeeProject{
+  opacity: 0.5;
+}
+
+.employee.disabled{
+  color: #a0a0a0;
+}
+
+.emptyDesk {
+  color: #a0a0a0;
+} 
+
+.accordion{
+  background-color: rgb(230, 230, 230);
+  padding-left: 0.5rem !important;
+  width: 9.5rem !important;
+  padding-right: -5rem !important;
+  border-radius: 1rem;
+}
+
+.accordionOpen{
+  padding-left: 0.5rem !important;
+  background-color: rgb(230, 230, 230);
+  border-radius: 1rem;
+  padding-bottom: 0.5rem !important;
+}
+
+.toggle{
+  cursor: pointer;
+}
+
+.personContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons {
+  padding: 0 !important;
+}

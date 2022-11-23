@@ -1,0 +1,129 @@
+@import '~semantic-ui-css/semantic.min.css';
+@import './styles/_variables.scss';
+
+body {
+  overflow-y: scroll;
+}
+
+#root, .appLayout {
+  min-height: 100vh;
+  position: relative;
+  .appLayout{
+    padding-top: $navbarHeight + 20px;
+    padding-bottom: 5rem;
+  }
+}
+
+#root{
+  table tr:hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .dark{
+    h1, h2, h3, h4, h5, h6 {
+      background: transparent;
+    }
+    .negative.message {
+      background-color: #fff6f6;
+      color: #9f3a38;
+    }
+    .dropdown, .dropdown .item, .icon:not(#blue) .calendar.icon, .accordion, .accordion .title, .pagination a, .pagination a i, input {
+      background: #323232;
+      color: white;
+    }
+    .dropdown .item {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    input, .ui.multiple.selection.dropdown {
+      border: 1px solid #5f5d5d !important;
+      input {
+        border: transparent !important;
+      }
+    }
+    .dropdown.icon {
+      background: transparent;
+    }
+    .message {
+      background: #5f5d5d;
+      color: white;
+    }
+    .clndr-calendars-segment{
+      color: black;
+    }
+    
+    table {
+      tbody {
+        background: #5f5d5d;
+        color: white;
+
+        .negative {
+          background: #836160 !important;
+          color: white !important;
+
+          &:hover {
+            opacity: 0.8;
+            color: black !important;
+          }
+        }
+
+        td.disabled {
+          color: rgb(145, 141, 141);
+        }
+      }
+
+      thead, tfoot {
+        th {
+          background: #323232;
+          color: white;
+        }
+      }
+
+      .ui.basic.striped.table tbody tr:nth-child(2n) {
+        background: rgba(0, 0, 0, .15) !important;
+      }
+    }
+
+    .statistic {
+      .value {
+        color: white;
+      }
+    }
+
+    .tableBackgroundExternalDark {
+      background: #5f5d5d;
+
+      i.red.icon, .ui.basic.red.button {
+        color: #761d1d !important;
+      }
+
+      .ui.basic.red.button {
+        box-shadow: 0 0 0 1px #761d1d inset !important;
+      }
+
+      i.blue.icon, .ui.basic.blue.button {
+        color: #72c3ff !important;
+      }
+      .ui.basic.blue.button {
+        box-shadow: 0 0 0 1px #72c3ff inset !important;
+      }
+
+      .legend {
+        color: black;
+      }
+    }
+  }
+}
+
+.ui.accordion tr.active.content{
+  display: table-row;
+}
+
+@media (max-width: 767px){
+  .appLayout {
+    padding-top: 2*$navbarHeight + 20px;
+  }
+}
+

@@ -1,0 +1,32 @@
+
+.labelGroup {
+  cursor: default !important;
+}
+  
+.email {
+  font-size: 14px;
+  color: #2185d0;
+}
+
+.labelLocation{
+  display: inline-flex !important;
+  column-gap: 2rem;
+}
+
+.locationText {
+  word-spacing: 0.2rem;
+  color: #2185d0;
+}
+
+.label:hover{
+  cursor: pointer;
+}
+
+.dropdownItem{
+  font-size: large !important;
+  background-color: rgb(232, 232, 232);
+}
+
+.workspaceNotSet{
+  color: red !important;
+}

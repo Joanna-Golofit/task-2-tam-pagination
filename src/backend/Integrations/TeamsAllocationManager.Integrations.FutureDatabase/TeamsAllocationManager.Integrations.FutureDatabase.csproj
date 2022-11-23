@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>TeamsAllocationManager.Integrations.FutureDatabase</RootNamespace>
+    <AssemblyName>TeamsAllocationManager.Integrations.FutureDatabase</AssemblyName>
+	<Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TeamsAllocationManager.Integrations\TeamsAllocationManager.Integrations.csproj" />
+  </ItemGroup>
+
+</Project>
