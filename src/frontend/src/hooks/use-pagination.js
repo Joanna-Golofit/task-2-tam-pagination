@@ -36,21 +36,29 @@ const usePagination = (filteredData, pageSize = 10) => {
       paginatedFilteredData,
       paginationNavigation: (
         <Container textAlign="center">
-          <Button disabled={currentPageNo === 1 || currentPageNo === 2} onClick={goToFirstPageHandler}>
-            Go to the First Page (1)
-          </Button>
-          <Button disabled={currentPageNo === 1} onClick={goToPrevPageHandler}>
-            {currentPageNo === 1 ? '...' : currentPageNo - 1}
-          </Button>
+          {currentPageNo !== 1 && currentPageNo !== 2 && (
+            <Button disabled={currentPageNo === 1 || currentPageNo === 2} onClick={goToFirstPageHandler}>
+              Go to the First Page (1)
+            </Button>
+          )}
+          {currentPageNo !== 1 && (
+            <Button disabled={currentPageNo === 1} onClick={goToPrevPageHandler}>
+              {currentPageNo === 1 ? '...' : currentPageNo - 1}
+            </Button>
+          )}
           <Button>
             <h4>{currentPageNo}</h4>
           </Button>
-          <Button disabled={currentPageNo === lastPageNo} onClick={goToNextPageHandler}>
-            {currentPageNo === lastPageNo ? '...' : currentPageNo + 1}
-          </Button>
-          <Button disabled={currentPageNo === lastPageNo || currentPageNo === lastPageNo - 1} onClick={goToLastPageHandler}>
-            Go to the Last Page ({ lastPageNo })
-          </Button>
+          {currentPageNo !== lastPageNo && (
+            <Button disabled={currentPageNo === lastPageNo} onClick={goToNextPageHandler}>
+              {currentPageNo === lastPageNo ? '...' : currentPageNo + 1}
+            </Button>
+          )}
+          {currentPageNo !== lastPageNo && currentPageNo !== lastPageNo - 1 && (
+            <Button disabled={currentPageNo === lastPageNo || currentPageNo === lastPageNo - 1} onClick={goToLastPageHandler}>
+              Go to the Last Page ({lastPageNo})
+            </Button>
+          )}
         </Container>
       ),
     }

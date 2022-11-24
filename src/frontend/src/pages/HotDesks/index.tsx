@@ -10,7 +10,7 @@ import { setLoadingAction } from '../../store/global/actions';
 import { TABLET_MEDIA_WIDTH } from '../../globalConstants';
 import { fetchHotDesksAction } from '../../store/hotDesks/actions';
 import { HotDeskFilters, HotDeskRespones } from '../../services/hotDesks/models';
-// import usePagination from '../../hooks/use-pagination';
+import usePagination from '../../hooks/use-pagination';
 
 const HotDesks: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,13 +24,10 @@ const HotDesks: React.FC = () => {
     freeHotDeskMax: undefined,
   });
 
-  // const {
-  // currentPageNo,
-  // pageSize,
-  // startFromIndex,
-  //   paginatedFilteredData,
-  //   paginationNavigation,
-  // } = usePagination(filteredRooms);
+  const {
+    paginatedFilteredData,
+    paginationNavigation,
+  } = usePagination(filteredRooms, 2);
 
   const { t } = useTranslation();
   const history = useHistory();
@@ -69,9 +66,9 @@ const HotDesks: React.FC = () => {
   let freeHotDeskSum = 0;
   let totalHotDeskCount = 0;
 
-  const rows = filteredRooms.map((i) => {
+  const rows = paginatedFilteredData.map((i) => {
     freeHotDeskSum += i.freeHotDeskCount;
-    totalHotDeskCount += (i.hotDesksCount);
+    totalHotDeskCount += i.hotDesksCount;
     return (
       <Table.Row
         key={i.id}
@@ -179,6 +176,7 @@ const HotDesks: React.FC = () => {
           </Table.Footer>
         )}
       </Table>
+      {paginationNavigation}
     </Segment>
   );
 };
