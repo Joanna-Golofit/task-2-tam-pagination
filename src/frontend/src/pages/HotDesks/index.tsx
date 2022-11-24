@@ -24,11 +24,13 @@ const HotDesks: React.FC = () => {
     freeHotDeskMax: undefined,
   });
 
-  // const [dataLength, setDataLength] = useState(30);
-  // console.log('dataLength', dataLength);
-  // const {currentPageNo, pageSize, startFromIndex, pagination} = usePagination(
-  //   dataLength, filteredRooms
-  // );
+  // const {
+  // currentPageNo,
+  // pageSize,
+  // startFromIndex,
+  //   paginatedFilteredData,
+  //   paginationNavigation,
+  // } = usePagination(filteredRooms);
 
   const { t } = useTranslation();
   const history = useHistory();

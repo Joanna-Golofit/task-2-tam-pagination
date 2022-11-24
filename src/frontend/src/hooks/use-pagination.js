@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'semantic-ui-react';
 
-const usePagination = (filteredData) => {
+const usePagination = (filteredData, pageSize = 10) => {
   const [currentPageNo, setCurrentPageNo] = useState(1);
-  const pageSize = 10;
   const [paginatedFilteredData, setPaginatedFilteredData] = useState(filteredData);
   const [startFromIndex, setStartFromIndex] = useState();
   const [dataLength, setDataLength] = useState(30);
@@ -34,9 +33,6 @@ const usePagination = (filteredData) => {
 
   return (
     {
-      currentPageNo,
-      pageSize,
-      startFromIndex,
       paginatedFilteredData,
       paginationNavigation: (
         <Container textAlign="center">

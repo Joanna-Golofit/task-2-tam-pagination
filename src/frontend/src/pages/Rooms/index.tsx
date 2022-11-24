@@ -27,12 +27,9 @@ const Rooms: React.FC = () => {
   const [filteredRooms, setFilteredRooms] = useState(rooms.roomsResponse.rooms);
 
   const {
-    currentPageNo,
-    pageSize,
-    startFromIndex,
     paginatedFilteredData,
     paginationNavigation,
-  } = usePagination(filteredRooms);
+  } = usePagination(filteredRooms, 20);
 
   const [visible, setVisible] = useState(false);
   const { t } = useTranslation();
@@ -57,7 +54,7 @@ const Rooms: React.FC = () => {
 
   useEffect(() => {
     setFilteredRooms(rooms?.roomsResponse?.rooms);
-  }, [rooms, startFromIndex, pageSize, currentPageNo]);
+  }, [rooms]);
 
   useEffect(() => {
     document.title = `${t('common.tam')} - ${t('rooms.header')}`;
