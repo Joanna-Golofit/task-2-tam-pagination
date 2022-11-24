@@ -43,7 +43,7 @@ const usePagination = (filteredData, pageSize = 10) => {
           )}
           {currentPageNo !== 1 && (
             <Button disabled={currentPageNo === 1} onClick={goToPrevPageHandler}>
-              {currentPageNo === 1 ? '...' : currentPageNo - 1}
+              {currentPageNo - 1}
             </Button>
           )}
           <Button>
@@ -51,7 +51,7 @@ const usePagination = (filteredData, pageSize = 10) => {
           </Button>
           {currentPageNo !== lastPageNo && (
             <Button disabled={currentPageNo === lastPageNo} onClick={goToNextPageHandler}>
-              {currentPageNo === lastPageNo ? '...' : currentPageNo + 1}
+              {currentPageNo + 1}
             </Button>
           )}
           {currentPageNo !== lastPageNo && currentPageNo !== lastPageNo - 1 && (
