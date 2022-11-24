@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'semantic-ui-react';
 
-const usePagination = (dataLength, filteredData) => {
+const usePagination = (filteredData) => {
   const [currentPageNo, setCurrentPageNo] = useState(1);
   const pageSize = 10;
-  // console.log('currentPageNo', currentPageNo);
   const [paginatedFilteredData, setPaginatedFilteredData] = useState(filteredData);
-  console.log('pageSize', pageSize);
-  const lastPageNo = Math.ceil(dataLength / pageSize);
-  console.log('dataLength tu', dataLength);
   const [startFromIndex, setStartFromIndex] = useState();
-  // const [dataLength, setDataLength] = useState(30);
+  const [dataLength, setDataLength] = useState(30);
+  const lastPageNo = Math.ceil(dataLength / pageSize);
 
   useEffect(() => {
     setStartFromIndex((currentPageNo - 1) * pageSize);
-    // console.log('setStartFromIndex', setStartFromIndex);
   }, [currentPageNo, pageSize]);
   useEffect(() => {
+    setDataLength(filteredData.length);
     setPaginatedFilteredData(
-      // setDataLength(
-      //   rooms?.roomsResponse?.rooms.length,
-      // );
       filteredData.slice(startFromIndex, pageSize * currentPageNo),
     );
   }, [startFromIndex, currentPageNo, pageSize, filteredData]);
@@ -44,10 +38,10 @@ const usePagination = (dataLength, filteredData) => {
       pageSize,
       startFromIndex,
       paginatedFilteredData,
-      pagination: (
+      paginationNavigation: (
         <Container textAlign="center">
-          <Button disabled={currentPageNo === 1} onClick={goToFirstPageHandler}>
-            First Page
+          <Button disabled={currentPageNo === 1 || currentPageNo === 2} onClick={goToFirstPageHandler}>
+            Go to the First Page (1)
           </Button>
           <Button disabled={currentPageNo === 1} onClick={goToPrevPageHandler}>
             {currentPageNo === 1 ? '...' : currentPageNo - 1}
@@ -58,10 +52,9 @@ const usePagination = (dataLength, filteredData) => {
           <Button disabled={currentPageNo === lastPageNo} onClick={goToNextPageHandler}>
             {currentPageNo === lastPageNo ? '...' : currentPageNo + 1}
           </Button>
-          <Button disabled={currentPageNo === lastPageNo} onClick={goToLastPageHandler}>
-            Last Page
+          <Button disabled={currentPageNo === lastPageNo || currentPageNo === lastPageNo - 1} onClick={goToLastPageHandler}>
+            Go to the Last Page ({ lastPageNo })
           </Button>
-          <span>Total pages: {lastPageNo}</span>
         </Container>
       ),
     }

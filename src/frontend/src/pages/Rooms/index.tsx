@@ -24,25 +24,19 @@ import usePagination from '../../hooks/use-pagination';
 const Rooms: React.FC = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state: AppState) => state.rooms); // tu mamy rooms.roomsResponse.rooms
-  // console.log('rooms', rooms.roomsResponse.rooms);
   const [filteredRooms, setFilteredRooms] = useState(rooms.roomsResponse.rooms);
-  // const numberOfPages = Math.ceil(filteredRooms.length / 10);
-  const [dataLength, setDataLength] = useState(30);
 
-  console.log('dataLength', dataLength);
   const {
     currentPageNo,
     pageSize,
     startFromIndex,
     paginatedFilteredData,
-    pagination,
-  } = usePagination(dataLength, filteredRooms);
-  // console.log('filteredRooms.length', filteredRooms.length);
+    paginationNavigation,
+  } = usePagination(filteredRooms);
 
   const [visible, setVisible] = useState(false);
   const { t } = useTranslation();
   const routerHistory = useHistory();
-  // console.log('paginatedFilteredRooms', paginatedFilteredRooms);
 
   const onFilter = (filters: FilterOptions) => {
     setFilteredRooms(rooms?.roomsResponse?.rooms.filter(
@@ -55,11 +49,6 @@ const Rooms: React.FC = () => {
         (!filters.capacityMax || r.capacity <= filters.capacityMax),
     ));
   };
-  // console.log('pageNo', pageNo);
-  // console.log('pageSize', pageSize);
-  // console.log('pageNo - 1', pageNo - 1);
-  // console.log('pageNo - 1 * pageSize', (pageNo - 1) * pageSize);
-  // console.log('StartFrom', startFrom);
 
   useEffect(() => {
     dispatch(setLoadingAction(true));
@@ -68,12 +57,6 @@ const Rooms: React.FC = () => {
 
   useEffect(() => {
     setFilteredRooms(rooms?.roomsResponse?.rooms);
-    // setPaginatedFilteredRooms(
-    //   rooms?.roomsResponse?.rooms.slice(startFromIndex, pageSize * currentPageNo),
-    // );
-    setDataLength(
-      rooms?.roomsResponse?.rooms.length,
-    );
   }, [rooms, startFromIndex, pageSize, currentPageNo]);
 
   useEffect(() => {
@@ -262,7 +245,7 @@ const Rooms: React.FC = () => {
           </Table.Footer>
         )}
       </Table>
-      {pagination}
+      {paginationNavigation}
     </Segment>
   );
 };
