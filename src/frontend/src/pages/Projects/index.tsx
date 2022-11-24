@@ -8,6 +8,7 @@ import { fetchProjects } from '../../store/projects/actions';
 import styles from './projects.module.scss';
 import { LAPTOP_MEDIA_WIDTH } from '../../globalConstants';
 import { setLoadingAction } from '../../store/global/actions';
+import usePagination from '../../hooks/use-pagination';
 
 const Projects = () => {
   const columnCount = 8;
@@ -20,6 +21,11 @@ const Projects = () => {
   const { projects, projectsCount } = projectsState;
   const [visible, setVisible] = useState(false);
 
+  const { paginatedFilteredData, paginationNavigation } = usePagination(
+    projects,
+    20,
+  );
+
   useEffect(() => {
     document.title = `${t('common.tam')} - ${t('projects.header')}`;
     dispatch(setLoadingAction(true));
@@ -30,7 +36,7 @@ const Projects = () => {
     history.push(`${location.pathname}/${id}`);
   };
 
-  const rows = projects?.map((project) => (
+  const rows = paginatedFilteredData?.map((project) => (
     <Table.Row
       key={project.id}
       className={`${styles.projectRow}`}
@@ -38,9 +44,15 @@ const Projects = () => {
     >
       <Table.Cell>{project.name}</Table.Cell>
       <Table.Cell>
-        {project.teamLeaders.length !== 0 ?
-          project.teamLeaders.map(({ name, surname }) => `${name} ${surname}`).join(', ') :
-          <b><i>{t('common.noTeamleader')}</i></b>}
+        {project.teamLeaders.length !== 0 ? (
+          project.teamLeaders
+            .map(({ name, surname }) => `${name} ${surname}`)
+            .join(', ')
+        ) : (
+          <b>
+            <i>{t('common.noTeamleader')}</i>
+          </b>
+        )}
       </Table.Cell>
       <Table.Cell>{project.peopleCount}</Table.Cell>
       <Table.Cell>{project.officeEmployeesCount}</Table.Cell>
@@ -72,32 +84,62 @@ const Projects = () => {
             <Responsive as={Table.Row} minWidth={LAPTOP_MEDIA_WIDTH}>
               <Table.HeaderCell>{t('projects.name')}</Table.HeaderCell>
               <Table.HeaderCell>{t('projects.leader')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.assignedPeople')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.peopleWorkingFromOffice')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.peopleWorkingHybrid')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.peopleWorkingRemotely')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.notSetMembersCount')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.unassignedMembersCount')}</Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.assignedPeople')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.peopleWorkingFromOffice')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.peopleWorkingHybrid')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.peopleWorkingRemotely')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.notSetMembersCount')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.unassignedMembersCount')}
+              </Table.HeaderCell>
             </Responsive>
             {/* Show short header labels if screen width smaller than tablet */}
             <Responsive as={Table.Row} maxWidth={LAPTOP_MEDIA_WIDTH - 1}>
               <Table.HeaderCell>{t('projects.name')}</Table.HeaderCell>
               <Table.HeaderCell>{t('projects.leader')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.assignedPeopleShort')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.peopleWorkingFromOfficeShort')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.peopleWorkingHybridShort')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.peopleWorkingRemotelyShort')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.notSetMembersCountShort')}</Table.HeaderCell>
-              <Table.HeaderCell>{t('projects.unassignedMembersCountShort')}</Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.assignedPeopleShort')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.peopleWorkingFromOfficeShort')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.peopleWorkingHybridShort')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.peopleWorkingRemotelyShort')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.notSetMembersCountShort')}
+              </Table.HeaderCell>
+              <Table.HeaderCell>
+                {t('projects.unassignedMembersCountShort')}
+              </Table.HeaderCell>
             </Responsive>
           </Table.Header>
-          <Table.Body>{projectsCount === 0 ? (
-            <Table.Row>
-              <TableCell colSpan={columnCount} textAlign="center"><i>{t('common.noResultsFilters')}</i></TableCell>
-            </Table.Row>
-          ) : rows}
+          <Table.Body>
+            {projectsCount === 0 ? (
+              <Table.Row>
+                <TableCell colSpan={columnCount} textAlign="center">
+                  <i>{t('common.noResultsFilters')}</i>
+                </TableCell>
+              </Table.Row>
+            ) : (
+              rows
+            )}
           </Table.Body>
         </Table>
+        {paginationNavigation}
       </Segment>
     </>
   );
